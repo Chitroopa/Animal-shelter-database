@@ -1,0 +1,5 @@
+<ul>
+  <% @animals_list.each() do |animal| %>
+    <h4><li><a href="/animal/<%= animal.id() %>"><%= animal.name() %></li></h4>
+  <% end %>
+</ul>

@@ -1,0 +1,23 @@
+<h1><%= @animal.name() %></h1>
+
+<ul>
+  <li>Gender: <%= @animal.gender() %></li>
+  <li>Date of Admittance: <%= @animal.date_of_admittance() %></li>
+  <li>Type: <%= @animal.type() %></li>
+  <li>Breed: <%= @animal.breed() %></li>
+</ul>
+
+<% if @animal.customer_id() != nil %>
+  <ul>
+    <li>Name: <%= @owner.name() %></li>
+    <li>Phone number: <%= @owner.phone() %></li>
+  </ul>
+<% else %>
+  <form action="/animal/<%= @animal.id() %>" method="post">
+    <div class="form-group">
+      <label for="owner">Enter your name to adopt the lovely pet!</label>
+      <input type="text" name="owner" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Adopt me!</button>
+  </form>
+<% end %>

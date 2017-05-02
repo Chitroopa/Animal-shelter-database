@@ -1,0 +1,5 @@
+<ul>
+  <% @customers_list.each() do |customer| %>
+    <h4><li><a href="/customer/<%= customer.id() %>"><%= customer.name() %></li></h4>
+  <% end %>
+</ul>

@@ -57,6 +57,27 @@ describe(Animal) do
       expect(Animal.sort_name()).to(eq([animal2, animal1]))
     end
   end
+
+  describe('.sort_by_admittance') do
+    it('returns all the animals in the animals list in sorted order') do
+      animal1 = Animal.new({:name => "David", :gender => "female", :date_of_admittance=>'2017-05-02', :type=>'dog', :breed => "siamese"})
+      animal1.save()
+      animal2 = Animal.new({:name => "Belladonna", :gender => "female", :date_of_admittance=>'2014-12-12', :type=>'cat', :breed => "persian"})
+      animal2.save()
+      expect(Animal.sort_by_admittance()).to(eq([animal2, animal1]))
+    end
+  end
+
+  describe('.find') do
+    it('find animal based on id') do
+      animal1 = Animal.new({:name => "David", :gender => "female", :date_of_admittance=>'2017-05-02', :type=>'dog', :breed => "siamese", :id=>nil})
+      animal1.save()
+      animal2 = Animal.new({:name => "Belladonna", :gender => "female", :date_of_admittance=>'2014-12-12', :type=>'cat', :breed => "persian",:id=>nil})
+      animal2.save()
+      expect(Animal.find(animal2.id())).to(eq(animal2))
+    end
+  end
+
 end
 
 describe(Customer) do
@@ -83,6 +104,18 @@ describe(Customer) do
       customer1 = Customer.new(:name => 'Max', :phone => "2341234567", :animal_type_preference => 'cat', :breed_preference => 'persian')
       customer1.save()
       expect(Customer.all()).to eq([customer1])
+    end
+  end
+
+  describe('.sort_breed_preference') do
+    it('returns list of customers by breed preference') do
+      customer1 = Customer.new(:name => 'Max', :phone => "2341234567", :animal_type_preference => 'cat', :breed_preference => 'siamese')
+      customer1.save()
+      customer2 = Customer.new(:name => 'Max', :phone => "2341234567", :animal_type_preference => 'cat', :breed_preference => 'persian')
+      customer2.save()
+      customer3 = Customer.new(:name => 'Max', :phone => "2341234567", :animal_type_preference => 'cat', :breed_preference => 'siamese')
+      customer3.save()
+      expect(Customer.sort_breed_preference()).to eq([customer2,customer1,customer3])
     end
   end
 
